@@ -1,0 +1,14 @@
+
+body {
+    background-image: url("{{ asset('images/ExceptionGhostBG.jpg') }}");
+    background-size: cover;
+    background-position: center;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: red;
+}

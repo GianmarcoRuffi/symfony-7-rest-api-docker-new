@@ -2,8 +2,41 @@
 
 {% block title %}Errore 500 - Internal Server Error{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        body {
+            background-image: url("{{ asset('images/ExceptionGhostBG.jpg') }}");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .error-container {
+            text-align: center;
+            color: white;
+        }
+
+        .error-container h1 {
+            font-size: 24px;
+        }
+
+        .error-container p {
+            font-size: 16px;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
+<div class="wrapper">
+    <div class="error-container">
     <h1>Errore 500 - Internal Server Error</h1>
     <p>Si è verificato un errore interno del server.</p>
-        <img src="{{ asset('images/error_image.png') }}" alt="Error Ghost">
+    </div>
+</div>
 {% endblock %}

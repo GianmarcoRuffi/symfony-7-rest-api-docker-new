@@ -2,8 +2,41 @@
 
 {% block title %}Errore 404 - Pagina non trovata{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        body {
+            background-image: url("{{ asset('images/ExceptionGhostBG.jpg') }}");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .error-container {
+            text-align: center;
+            color: white;
+        }
+
+        .error-container h1 {
+            font-size: 24px;
+        }
+
+        .error-container p {
+            font-size: 16px;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
-    <h1>Errore 404 - Pagina non trovata</h1>
-    <p>La pagina richiesta non è stata trovata sul server.</p>
-        <img src="{{ asset('images/error_image.png') }}" alt="Error Ghost">
+<div class="wrapper">
+    <div class="error-container">
+        <h1>Errore 404 - Pagina non trovata</h1>
+        <p>La pagina richiesta non è stata trovata sul server.</p>
+    </div>
+</div>
 {% endblock %}
