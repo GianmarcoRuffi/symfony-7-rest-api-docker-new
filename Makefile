@@ -14,12 +14,12 @@ up:
 	$(docker) up -d
 	make install
 
-bash:
+php-shell:
 	$(docker_exec) $(php) bash
 
 
-db:
-	$(docker_exec) $(db) bash
+db-shell:
+	  docker exec -it symfony-7-rest-api-docker-new-db-1 bash
 
 install:
 	$(docker_exec) $(php) bash -c "composer install"
