@@ -17,6 +17,10 @@ up:
 bash:
 	$(docker_exec) $(php) bash
 
+
+db:
+	$(docker_exec) $(db) bash
+
 install:
 	$(docker_exec) $(php) bash -c "composer install"
 
