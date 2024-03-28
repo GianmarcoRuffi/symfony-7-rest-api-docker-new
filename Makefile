@@ -14,7 +14,7 @@ up:
 	$(docker) up -d
 	make install
 
-php-shell:
+shell:
 	$(docker_exec) $(php) bash
 
 
