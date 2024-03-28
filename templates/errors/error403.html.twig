@@ -1,10 +1,42 @@
-
 {% extends 'base.html.twig' %}
 
 {% block title %}Errore 403 - Accesso Negato{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        body {
+            background-image: url("{{ asset('images/ExceptionGhostBG.jpg') }}");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .error-container {
+            text-align: center;
+            color: white;
+        }
+
+        .error-container h1 {
+            font-size: 24px;
+        }
+
+        .error-container p {
+            font-size: 16px;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
-    <h1>Errore 403 - Accesso Negato</h1>
-    <p>Non hai i permessi necessari per accedere a questa risorsa.</p>
-        <img src="{{ asset('images/ExceptionGhostBG.jpg') }}" alt="Exception Ghost">
+<div class="wrapper">
+    <div class="error-container">
+        <h1>Errore 403 - Accesso Negato</h1>
+        <p>Non hai i permessi necessari per accedere a questa risorsa.</p>
+    </div>
+</div>
 {% endblock %}

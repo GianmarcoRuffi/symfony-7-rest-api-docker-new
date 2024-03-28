@@ -1,10 +1,42 @@
-
 {% extends 'base.html.twig' %}
 
-{% block title %}Errore 400 - Bad Request{% endblock %}
+{% block title %}Errore 400 - Richiesta Non Valida{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        body {
+            background-image: url("{{ asset('images/ExceptionGhostBG.jpg') }}");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .error-container {
+            text-align: center;
+            color: white;
+        }
+
+        .error-container h1 {
+            font-size: 24px;
+        }
+
+        .error-container p {
+            font-size: 16px;
+        }
+    </style>
+{% endblock %}
 
 {% block body %}
-    <h1>Errore 400 - Bad Request</h1>
-    <p>La richiesta inviata al server è stata errata.</p>
-        <img src="{{ asset('images/ExceptionGhostBG.jpg') }}" alt="Exception Ghost">
+<div class="wrapper">
+    <div class="error-container">
+        <h1>Errore 400 - Richiesta Non Valida</h1>
+        <p>La richiesta inviata al server non è valida o non può essere elaborata.</p>
+    </div>
+</div>
 {% endblock %}
