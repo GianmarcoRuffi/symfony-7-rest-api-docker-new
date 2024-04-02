@@ -1,0 +1,16 @@
+framework:
+    logger:
+        # Abilito i log
+        enabled: true
+        # Configurazione dei canali di log
+        channels: ['!event']
+        handlers:
+            # Definisco un handler per i log
+            main:
+                type: 'stream'
+                # Imposto il livello di logging (puoi utilizzare 'debug', 'info', 'notice', 'warning', 'error', 'critical' o 'emergency')
+                level: 'debug'
+                # Specifico il percorso del file di log
+                path: '%kernel.logs_dir%/%kernel.environment%.log'
+                # Formato dei log
+                formatter: 'monolog.formatter.line'
