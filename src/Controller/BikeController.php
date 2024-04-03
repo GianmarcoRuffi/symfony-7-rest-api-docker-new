@@ -14,7 +14,6 @@ use App\Service\BikeService;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-
 #[Route('/api', name: 'api_')]
 class BikeController extends AbstractController
 {
@@ -78,7 +77,6 @@ class BikeController extends AbstractController
             $bike->setColor($color);
         }
         if ($engineSerial !== null) {
-
             $engine = $entityManager->getRepository(Engine::class)->findOneBy(['SerialCode' => $engineSerial]);
 
 

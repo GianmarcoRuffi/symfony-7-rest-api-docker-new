@@ -37,6 +37,4 @@ class BikeRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-
-
 }

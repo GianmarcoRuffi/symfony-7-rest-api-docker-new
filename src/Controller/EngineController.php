@@ -12,7 +12,6 @@ use App\Repository\EngineRepository;
 use Twig\Environment;
 use Psr\Log\LoggerInterface;
 
-
 #[Route('/api', name: 'api_')]
 class EngineController extends AbstractController
 {
@@ -65,8 +64,8 @@ class EngineController extends AbstractController
 
     #[Route('/engines/{serial_code}', name: 'engine_show', methods: ['GET'])]
     public function show(string $serial_code, Environment $twig): Response
-
-    {        $this->logger->info('Richiesta di get di un motore ricevuta.');
+    {
+        $this->logger->info('Richiesta di get di un motore ricevuta.');
         $engine = $this->engineService->getEngineBySerialCode($serial_code);
 
         if (!$engine) {
