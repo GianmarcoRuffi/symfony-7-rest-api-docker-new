@@ -14,11 +14,15 @@ class HomeController extends AbstractController
 
         $bikesLink = $this->generateUrl('api_bike_index');
         $enginesLink = $this->generateUrl('api_engine_index');
+         $registerLink = $this->generateUrl('app_register');
+        $loginLink = $this->generateUrl('app_login');
 
 
         return $this->render('home/index.html.twig', [
             'bikesLink' => $bikesLink,
             'enginesLink' => $enginesLink,
+            'registerLink' => $registerLink,
+            'loginLink' => $loginLink,
         ]);
     }
 }
