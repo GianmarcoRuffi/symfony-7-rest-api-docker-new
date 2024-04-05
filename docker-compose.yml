@@ -1,5 +1,10 @@
 version: "3"
 services:
+  maildev:
+    image: maildev/maildev
+    ports:
+      - "1080:1080"
+      - "1025:1025"
   db:
     container_name: motorbikes_db 
     image: mysql:8.0
