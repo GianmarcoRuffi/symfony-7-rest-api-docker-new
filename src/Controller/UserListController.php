@@ -1,7 +1,5 @@
 <?php
 
-// src/Controller/UserListController.php
-
 namespace App\Controller;
 
 use App\Service\UserService;
