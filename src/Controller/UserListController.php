@@ -8,6 +8,7 @@ use App\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class UserListController extends AbstractController
 {
@@ -41,6 +42,13 @@ class UserListController extends AbstractController
     public function removeAdmin(int $id): Response
     {
         $this->userService->removeUserRoleAdmin($id);
+        return $this->redirectToRoute('user_list');
+    }
+
+    #[Route('/users/{id}/delete', name: 'delete_user')]
+    public function deleteUser(int $id, UserService $userService): RedirectResponse
+    {
+        $userService->deleteUser($id);
         return $this->redirectToRoute('user_list');
     }
 }

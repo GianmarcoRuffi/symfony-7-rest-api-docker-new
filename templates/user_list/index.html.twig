@@ -23,8 +23,9 @@
                         {% if 'ROLE_ADMIN' not in user.roles %}
                             <a href="{{ path('set_admin', {'id': user.id}) }}" class="btn btn-primary">Set as Admin</a>
                         {% else %}
-                            <a href="{{ path('remove_admin', {'id': user.id}) }}" class="btn btn-danger">Remove Admin</a>
+                            <a href="{{ path('remove_admin', {'id': user.id}) }}" class="btn btn-danger">Remove Admin</a> 
                         {% endif %}
+                        | <a href="{{ path('delete_user', {'id': user.id}) }}" onclick="return confirm('Are you sure you want to delete this user?')">Delete User</a>
                     </td>
                 </tr>
             {% endfor %}

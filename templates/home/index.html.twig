@@ -12,6 +12,9 @@
     <ul>
         <li><a href="{{ bikesLink }}">Bikes List</a></li>
         <li><a href="{{ enginesLink }}">Engines List</a></li>
+        {% if is_granted('ROLE_ADMIN') %}
+            <li><a href="{{ usersLink }}">Users List</a></li>
+        {% endif %}
         <li><a href="{{ registerLink }}">Register</a></li>
         <li><a href="{{ loginLink }}">Login</a></li>
     </ul>

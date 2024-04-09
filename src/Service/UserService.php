@@ -1,7 +1,5 @@
 <?php
 
-// src/Service/UserService.php
-
 namespace App\Service;
 
 use App\Entity\User;
@@ -55,9 +53,8 @@ class UserService
     private function mapRolesToReadable(array $roles): array
     {
         $roleMap = [
-            'ROLE_USER' => 'Utente',
+            'ROLE_USER' => 'User',
             'ROLE_ADMIN' => 'Admin',
-            // Aggiungi altri ruoli se necessario
         ];
 
         $readableRoles = [];
@@ -99,6 +96,16 @@ class UserService
                 $user->setRoles(array_values($roles));
                 $this->entityManager->flush();
             }
+        }
+    }
+
+    public function deleteUser(int $id): void
+    {
+        $user = $this->entityManager->getRepository(User::class)->find($id);
+
+        if ($user) {
+            $this->entityManager->remove($user);
+            $this->entityManager->flush();
         }
     }
 }
