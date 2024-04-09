@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
     <h1>Welcome to the Motorbikes database! ✅</h1>
     
     <p>You can find the Bikes and the Engines here:</p>
@@ -18,5 +15,4 @@
         <li><a href="{{ registerLink }}">Register</a></li>
         <li><a href="{{ loginLink }}">Login</a></li>
     </ul>
-</body>
-</html>
+{% endblock %}

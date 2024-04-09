@@ -15,14 +15,14 @@ class HomeController extends AbstractController
         $enginesLink = $this->generateUrl('api_engine_index');
         $registerLink = $this->generateUrl('app_register');
         $loginLink = $this->generateUrl('app_login');
-        $usersLink = $this->generateUrl('user_list'); // Assuming you have a route named 'user_list' for users
+        $usersLink = $this->generateUrl('user_list');
 
         return $this->render('home/index.html.twig', [
             'bikesLink' => $bikesLink,
             'enginesLink' => $enginesLink,
             'registerLink' => $registerLink,
             'loginLink' => $loginLink,
-            'usersLink' => $usersLink, // Pass the users link to the template
+            'usersLink' => $usersLink,
         ]);
     }
 }
