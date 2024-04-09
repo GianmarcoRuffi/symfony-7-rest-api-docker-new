@@ -41,6 +41,7 @@ class RegistrationController extends AbstractController
                 )
             );
             $user->setRoles(['ROLE_USER']);
+            $roles[] = "ROLE_USER";
 
             if (str_contains($user->getEmail(), '@admins')) {
                 $user->setRoles(['ROLE_ADMIN']);
