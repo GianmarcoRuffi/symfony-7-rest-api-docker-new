@@ -17,7 +17,13 @@
             {% for user in users %}
                 <tr>
                     <td>{{ user.id }}</td>
-                    <td>{{ user.email }}</td>
+                   <td>
+            {% if 'ROLE_ADMIN' in user.roles %}
+                <span style="color: red; font-weight: bold;">{{ user.email }}</span>
+            {% else %}
+                <span style="color: green;">{{ user.email }}</span>
+            {% endif %}
+        </td>
                     <td>{{ user.readableRoles|join(', ') }}</td>
                     <td>
                         {% if 'ROLE_ADMIN' not in user.roles %}
