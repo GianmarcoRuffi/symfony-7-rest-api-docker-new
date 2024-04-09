@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Controller;
 
 use App\Entity\User;
@@ -12,35 +13,41 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminRoleController extends AbstractController
 {
-    private $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-        $this->entityManager = $entityManager;
-    }
-
     #[Route('/add-admin-role', name: 'add_admin_role')]
-    public function addAdminRole(Request $request): Response
+    public function addAdminRole(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $users = $entityManager->getRepository(User::class)->findAll();
 
-        $userRepository = $this->entityManager->getRepository(User::class);
-        $users = $userRepository->findAll();
-
-        $form = $this->createForm(AddAdminRoleType::class, null, ['users' => $users,]);
+        $form = $this->createForm(AddAdminRoleType::class, null, [
+            'users' => $users,
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user = $form->getData();
+            $data = $form->getData();
+            $userId = $data['userId'];
+            $addAdminRole = $data['addAdminRole'];
 
-            if ($form->get('addAdminRole')->getData()) {
-                $user->addRole('ROLE_ADMIN');
+            // Trova l'utente nel database
+            $user = $entityManager->getRepository(User::class)->find($userId);
+
+            if (!$user) {
+                throw $this->createNotFoundException('User not found');
             }
 
-            $this->entityManager->flush();
+            // Aggiungi il ruolo "admin" all'utente se la checkbox è selezionata
+            if ($addAdminRole) {
+                $roles = $user->getRoles();
+                $roles[] = 'ROLE_ADMIN';
+                $user->setRoles(array_unique($roles));
+                $entityManager->flush();
 
-            $this->addFlash('success', 'Ruolo admin aggiunto con successo all\'utente');
+                $this->addFlash('success', 'Ruolo "admin" aggiunto con successo all\'utente.');
+            } else {
+                $this->addFlash('info', 'Nessun ruolo aggiunto.');
+            }
 
-            return $this->redirectToRoute('/add-admin-role');
+            return $this->redirectToRoute('dashboard'); // Reindirizza alla pagina desiderata dopo l'aggiunta del ruolo
         }
 
         return $this->render('admin_role/add_admin_role.html.twig', [
