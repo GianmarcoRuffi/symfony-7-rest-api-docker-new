@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add Admin Role{% endblock %}
+
+{% block body %}
+    <h1>Add Admin Role to User</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.userId) }}
+        {{ form_row(form.addAdminRole) }}
+
+        <button type="submit" class="btn btn-primary">Add Admin Role</button>
+    {{ form_end(form) }}
+{% endblock %}

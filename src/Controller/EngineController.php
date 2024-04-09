@@ -4,22 +4,24 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use App\Service\EngineService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Repository\EngineRepository;
 use Twig\Environment;
-
+use Psr\Log\LoggerInterface;
 
 #[Route('/api', name: 'api_')]
 class EngineController extends AbstractController
 {
     private $engineService;
+    private $logger;
 
-    public function __construct(EngineService $engineService)
+    public function __construct(EngineService $engineService, LoggerInterface $logger)
     {
         $this->engineService = $engineService;
+         $this->logger = $logger;
     }
 
 
@@ -62,8 +64,8 @@ class EngineController extends AbstractController
 
     #[Route('/engines/{serial_code}', name: 'engine_show', methods: ['GET'])]
     public function show(string $serial_code, Environment $twig): Response
-
     {
+        $this->logger->info('Richiesta di get di un motore ricevuta.');
         $engine = $this->engineService->getEngineBySerialCode($serial_code);
 
         if (!$engine) {

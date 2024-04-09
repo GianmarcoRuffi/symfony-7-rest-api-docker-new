@@ -13,3 +13,5 @@ RUN mkdir -p var && \
     chown -R www-data:www-data var
 
 RUN a2enmod rewrite
+
+LABEL name="Apache Build" version="1.0.0"

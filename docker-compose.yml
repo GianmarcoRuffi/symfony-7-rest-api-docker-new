@@ -1,6 +1,12 @@
 version: "3"
 services:
+  maildev:
+    image: maildev/maildev
+    ports:
+      - "1080:1080"
+      - "1025:1025"
   db:
+    container_name: motorbikes_db 
     image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -10,6 +16,7 @@ services:
     ports:
       - "3307:3306"
   php:
+    container_name: motorbikes_php
     build:
       context: .
       dockerfile: Dockerfile
@@ -22,3 +29,4 @@ services:
 
 volumes:
   db_data:
+   driver: local

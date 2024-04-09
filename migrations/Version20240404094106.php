@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20240323233854 extends AbstractMigration
+final class Version20240404094106 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -32,6 +32,12 @@ final class Version20240323233854 extends AbstractMigration
         );
 
         $this->addSql('CREATE TABLE engine (serial_code VARCHAR(255) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`, name VARCHAR(50) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`, horsepower INT NOT NULL, manufacturer VARCHAR(50) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`, PRIMARY KEY(serial_code)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB COMMENT = \'\' ');
+        $this->abortIf(
+            !$this->connection->getDatabasePlatform() instanceof \Doctrine\DBAL\Platforms\MySQL80Platform,
+            "Migration can only be executed safely on '\Doctrine\DBAL\Platforms\MySQL80Platform'."
+        );
+
+        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`, roles JSON NOT NULL, password VARCHAR(255) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`, is_verified TINYINT(1) NOT NULL, UNIQUE INDEX UNIQ_IDENTIFIER_EMAIL (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB COMMENT = \'\' ');
     }
 
     public function down(Schema $schema): void
@@ -49,5 +55,11 @@ final class Version20240323233854 extends AbstractMigration
         );
 
         $this->addSql('DROP TABLE engine');
+        $this->abortIf(
+            !$this->connection->getDatabasePlatform() instanceof \Doctrine\DBAL\Platforms\MySQL80Platform,
+            "Migration can only be executed safely on '\Doctrine\DBAL\Platforms\MySQL80Platform'."
+        );
+
+        $this->addSql('DROP TABLE user');
     }
 }

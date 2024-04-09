@@ -1,4 +1,5 @@
 php := php
+db := db
 docker := docker-compose
 compose := $(docker) --file docker-compose.yml
 docker_exec := $(compose) exec
@@ -17,9 +18,8 @@ up:
 shell:
 	$(docker_exec) $(php) bash
 
-
-db-shell:
-	  docker exec -it symfony-7-rest-api-docker-new-db-1 bash
+shell-db:
+	$(docker_exec) $(db) bash
 
 install:
 	$(docker_exec) $(php) bash -c "composer install"

@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Bike;
@@ -13,7 +13,6 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 use App\Service\BikeService;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
-
 
 #[Route('/api', name: 'api_')]
 class BikeController extends AbstractController
@@ -78,7 +77,6 @@ class BikeController extends AbstractController
             $bike->setColor($color);
         }
         if ($engineSerial !== null) {
-
             $engine = $entityManager->getRepository(Engine::class)->findOneBy(['SerialCode' => $engineSerial]);
 
 

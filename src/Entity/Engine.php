@@ -13,7 +13,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 class Engine
 {
-
     #[ORM\Id]
     #[ORM\Column(name: "serial_code", length: 255, nullable: false)]
     #[Assert\NotBlank(message: 'Serial Code is mandatory.')]
