@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User List{% endblock %}
+
+{% block body %}
+    <h1>User List</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.readableRoles|join(', ') }}</td>
+                    <td>
+                        {% if 'ROLE_ADMIN' not in user.roles %}
+                            <a href="{{ path('set_admin', {'id': user.id}) }}" class="btn btn-primary">Set as Admin</a>
+                        {% else %}
+                            <a href="{{ path('remove_admin', {'id': user.id}) }}" class="btn btn-danger">Remove Admin</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
