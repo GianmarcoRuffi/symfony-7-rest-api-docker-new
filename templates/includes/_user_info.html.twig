@@ -1,9 +1,30 @@
-{% if app.user %}
-    <div class="mb-3">
-        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/userinfo.css') }}">
+{% endblock %}
+
+<div class="container">
+    <div class="left-container">
+        {% if app.user %}
+            <div class="mb-3">
+                You are logged in as {{ app.user.userIdentifier }}
+            </div>
+        {% else %}
+            <div class="mb-3">
+                You are not logged in.
+            </div>
+        {% endif %}
     </div>
-{% else %}
-    <div class="mb-3">
-        You are not logged in.
+
+    <div class="right-container">
+        {% if app.user %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <div class="mb-3">
+                    <a href="{{ path('controlpanel') }}">> Go to the Dashboard</a>
+                </div>
+            {% endif %}
+            <div class="mb-3">
+                <a href="{{ path('app_logout') }}">> Logout</a>
+            </div>
+        {% endif %}
     </div>
-{% endif %}
+</div>

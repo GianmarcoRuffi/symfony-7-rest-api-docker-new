@@ -1,0 +1,77 @@
+/* Stile per il corpo della pagina */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("../images/Home.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.main-menu {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 50px auto;
+    max-width: 600px;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-top: 50px;
+}
+
+
+p {
+    color: #666;
+    text-align: center;
+}
+
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+
+ul li a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    margin: 10px;
+    display: inline-block;
+}
+
+
+ul li a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+footer a:hover {
+    text-decoration: underline;
+}
