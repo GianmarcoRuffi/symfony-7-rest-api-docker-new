@@ -30,6 +30,7 @@
                             <td>{{ bike.color }}</td>
                               <td>
                     <a href="{{ path('api_bike_show', {'id': bike.id}) }}">Show</a>
+                    |<a href="{{path('api_bike_delete', {'id': bike.id}) }}" onclick="return confirm('Are you sure you want to delete this bike?')">Delete Bike</a>
                 </td>
                         </tr>
                     {% endfor %}
