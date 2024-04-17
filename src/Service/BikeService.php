@@ -118,18 +118,17 @@ class BikeService
         return $data;
     }
 
-
     public function deleteBikeById(int $id): bool
     {
         $bike = $this->entityManager->getRepository(Bike::class)->find($id);
 
-        if (!$bike) {
+        if ($bike) {
+            $this->entityManager->remove($bike);
+            $this->entityManager->flush();
+
+            return true;
+        } else {
             return false;
         }
-
-        $this->entityManager->remove($bike);
-        $this->entityManager->flush();
-
-        return true;
     }
 }

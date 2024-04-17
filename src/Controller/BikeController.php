@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 use App\Service\BikeService;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 #[Route('/api', name: 'api_')]
 class BikeController extends AbstractController
@@ -115,15 +116,11 @@ class BikeController extends AbstractController
     }
 
 
-    #[Route('/bikes/{id}', name: 'bike_delete', methods: ['DELETE'])]
-    public function delete(int $id): JsonResponse
+    #[Route('/bikes/{id}/delete', name: 'bike_delete')]
+    public function delete(int $id, BikeService $bikeService): RedirectResponse
     {
-        $deleted = $this->bikeService->deleteBikeById($id);
 
-        if (!$deleted) {
-            return new JsonResponse(null, JsonResponse::HTTP_NO_CONTENT);
-        }
-
-        return new JsonResponse('The bike with the id ' . $id . ' has been successfully deleted');
+        $bikeService->deleteBikeById($id);
+        return $this->redirectToRoute('api_bike_index');
     }
 }
